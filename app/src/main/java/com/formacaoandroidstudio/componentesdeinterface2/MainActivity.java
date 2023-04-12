@@ -27,8 +27,48 @@ public class MainActivity extends AppCompatActivity {
         textResultadoSenha = findViewById(R.id.textResultadoSwitch);
         textResultadoToggle = findViewById(R.id.textResultadoToggle);
 
+
+        /* Adicionando listener para os componentes
+         * Chamando método listener - o método vai ser executado em tempo de execução, ou seja, é possível reparar que
+         * não vai nem precisar clicar no botão enviar para mudar o valor do switch, ele fará essa mudança no momento que
+         * você clicar no switch. Equivale o mesmo para o toggleButton.
+         * O listener fica monitorando os componentes e se ele mudar o seu estado o método onChecked Changed é chamado.
+         * */
+        adicionarListenerSwitch();
+        adicionarListenerToggle();
+
     }
-    
+
+    public void adicionarListenerSwitch(){
+        switchSenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked){
+                    textResultadoSenha.setText("Switch Ligado");
+                }else{
+                    textResultadoSenha.setText("Switch Desligado");
+                }
+            }
+        });
+    }
+
+
+    public void adicionarListenerToggle(){
+        toggleSenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    textResultadoToggle.setText("Toggle Ligado");
+                }else{
+                    textResultadoToggle.setText("Toggle Desligado");
+                }
+            }
+        });
+    }
+
+    /* Comentado
+
     public void enviar(View view){
         if(switchSenha.isChecked()){
             textResultadoSenha.setText("Switch Ligado");
@@ -42,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             textResultadoToggle.setText("Toggle Desligado");
         }
     }
+    */
 }
 
 /**

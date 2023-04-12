@@ -40,14 +40,6 @@
         android:textOn="Ligado"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="enviar"
-        android:text="enviar"
-        android:textSize="18sp" />
-
     <TextView
         android:id="@+id/textResultadoSwitch"
         android:layout_width="match_parent"
