@@ -67,4 +67,11 @@
         android:layout_height="wrap_content"
         android:onClick="abrirToastCustomizado"
         android:text="abrir toast customizado" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="abrirAlertDialog"
+        android:text="alert dialog" />
 </LinearLayout>

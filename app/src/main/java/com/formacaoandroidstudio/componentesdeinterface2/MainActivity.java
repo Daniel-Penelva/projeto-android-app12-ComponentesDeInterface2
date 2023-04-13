@@ -1,7 +1,9 @@
 package com.formacaoandroidstudio.componentesdeinterface2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -95,6 +97,41 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    public void abrirAlertDialog(View view){
+
+        // Instanciar AlertDialog
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        // Configurar títulos e mensagens
+        dialog.setTitle("ATENÇÃO!!!");
+        dialog.setMessage("Testando AlertDialog");
+
+        // Configurar o cancelamento
+        dialog.setCancelable(false);
+
+        // Configurar icone
+        dialog.setIcon(android.R.drawable.ic_dialog_alert);
+
+        //Configurar ação para SIM ou NÃO
+        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Você executou a ação SIM!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Você executou a ação NÃO!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Criar e exibir Dialog
+        dialog.create();
+        dialog.show();
+    }
+
 }
 
 /** Anotações:
@@ -129,5 +166,20 @@ public class MainActivity extends AppCompatActivity {
  * Método show() - para mostrar a mensagem.
  *
  * OBS. É possível também customizar o Toast instanciando a classe Toast e chamando seus métodos.
+ *
+ *  ------------------------------------------------
+ *  AlertDialog
+ *  É do tipo Builder.
+ *
+ *  setPositiveButton() e setNegativeButton;
+ *  Esse método carrega dois métodos, (1) define o texto (2) define a ação executada (listener).
+ *
+ *  OBS. Configurar o cancelamento:
+ *  A janela do alertDialog pode ser cancelada ao clicar em qualquer parte da tela. Portanto, caso você queira que
+ *  o usuário não faça isso, é possível programar para que o alertDialog não seja cancelado pelo usuário, que o usuário
+ *  tenha a obrigação de clicar em uma das duas ações, seja ela o SIM ou o NÃO.
+ *
+ *  Para fazer essa obrigação temos que usar o método 'setCancelable(true);'
+ *  Repare que recebe como parametro o tipo boolean, caso coloque false, o usuário não consegue mais cancelar o alertDialog.
  *
  * */
