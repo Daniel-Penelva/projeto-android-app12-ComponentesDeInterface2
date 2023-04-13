@@ -53,4 +53,18 @@
         android:layout_height="wrap_content"
         android:text="ResultadoToggle"
         android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="abrirToast"
+        android:text="abrir toast" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="abrirToastCustomizado"
+        android:text="abrir toast customizado" />
 </LinearLayout>

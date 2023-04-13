@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     public void adicionarListenerToggle(){
         toggleSenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -67,25 +68,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /* Comentado
 
-    public void enviar(View view){
-        if(switchSenha.isChecked()){
-            textResultadoSenha.setText("Switch Ligado");
-        }else{
-            textResultadoSenha.setText("Switch Desligado");
-        }
+    public void abrirToast(View view){
 
-        if(toggleSenha.isChecked()){
-            textResultadoToggle.setText("Toggle Ligado");
-        }else{
-            textResultadoToggle.setText("Toggle Desligado");
-        }
+        /* Explicação na anotação */
+        Toast.makeText(getApplicationContext(), "Testando Toast", Toast.LENGTH_LONG).show();
     }
-    */
+
+    public void abrirToastCustomizado(View view){
+
+        TextView textView = new TextView(getApplicationContext());
+        textView.setBackgroundResource(R.color.colorAccent);
+        textView.setTextColor(R.color.colorPrimary);
+        textView.setText("Testando Toast customizado!");
+
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(android.R.drawable.star_big_off);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+
+        /* Pode ser um texto, uma imagem, um layout */
+         toast.setView(textView);
+        //toast.setView(imageView);
+
+        toast.show();
+    }
+
 }
 
-/**
+/** Anotações:
+ *
  * Switch (marcador ativação)
  * Em attributtes:
  * Para melhor visual deixa em 'layou_width' o valor 'match_parent'.
@@ -105,4 +118,16 @@ public class MainActivity extends AppCompatActivity {
  * É possível capturar esses valores do textOn e do textOff.
  *
  * O atributo 'checked' com o valor 'true' deixa por padrão já marcado o switch.
+ *
+ * ------------------------------------------------
+ * Toast
+ * O método makeTest() recebe três parâmetros, são eles:
+ * getApplicationContext() ou o this - que permite acessar diversos recursos globais da sua aplicação. Ex: alarme, sensores, notificações, etc...
+ * "" - define a mensagem de texto
+ * Toast.LENGTH_LONG - Define o tempo MAIOR de atuação do toast OU LENGTH_SHORT (tempo mais curto).
+ *
+ * Método show() - para mostrar a mensagem.
+ *
+ * OBS. É possível também customizar o Toast instanciando a classe Toast e chamando seus métodos.
+ *
  * */
