@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton toggleSenha;
     private TextView textResultadoSenha, textResultadoToggle;
 
+    /* Instancias do PreogressBar */
+    private ProgressBar progressBarHorizontal;
+    private ProgressBar progressBarCircular;
+    private int progresso = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         toggleSenha = findViewById(R.id.toggleSenha);
         textResultadoSenha = findViewById(R.id.textResultadoSwitch);
         textResultadoToggle = findViewById(R.id.textResultadoToggle);
+
+        progressBarHorizontal = findViewById(R.id.progressBarHorizontal);
+        progressBarCircular = findViewById(R.id.progressBarCircular);
+
+        // configurando a visibilidade do progressBar circular
+        progressBarCircular.setVisibility(View.GONE);
 
 
         /* Adicionando listener para os componentes
@@ -132,6 +144,21 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+     public void carregarProgressBar(View view){
+
+        // ProgressBar Horizontal
+         this.progresso = this.progresso + 1;
+         progressBarHorizontal.setProgress(this.progresso);
+
+
+         // ProgressBar Circular
+         progressBarCircular.setVisibility(View.VISIBLE);
+         if(this.progresso == 10){
+             progressBarCircular.setVisibility(View.GONE);
+         }
+
+     }
+
 }
 
 /** Anotações:
@@ -181,5 +208,22 @@ public class MainActivity extends AppCompatActivity {
  *
  *  Para fazer essa obrigação temos que usar o método 'setCancelable(true);'
  *  Repare que recebe como parametro o tipo boolean, caso coloque false, o usuário não consegue mais cancelar o alertDialog.
+ *
+ *
+ *  ------------------------------------------------
+ *  Barra de Progresso (ProgressBar)
+ *  Em attributes:
+ *
+ *  Tem o 'visibility' que define como a barra de progresso irá aparecer na tela. Possuem três valores, são eles:
+ *  (1) Visible - aparece no design do layout.
+ *  (2) Invisible - aparece no design do layout, mas não aparece as funcionalidades.
+ *  (3) Gone - não aparece no design do layout.
+ *  OBS. É possível fazer diretamente no código com o método 'setVisibility(View.Gone)'
+ *
+ *  Tem o 'max' que define o tamanho da barra de progresso.
+ *
+ *  Tem o 'progress' que define o progresso da barra.
+ *
+ *
  *
  * */
