@@ -100,4 +100,41 @@
         android:layout_height="wrap_content"
         android:onClick="carregarProgressBar"
         android:text="Carregar" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exemplo seekBar" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="O quão divertido você é?" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Em uma escala de 0 à 10" />
+
+    <SeekBar
+        android:id="@+id/seekBarEscala"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="recuperaProgressoSeekBar"
+        android:text="Recuperar Progresso" />
+
+    <TextView
+        android:id="@+id/textViewSeekBarResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado" />
 </LinearLayout>

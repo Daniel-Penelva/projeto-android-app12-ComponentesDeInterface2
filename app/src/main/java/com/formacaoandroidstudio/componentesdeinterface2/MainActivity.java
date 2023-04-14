@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,29 +20,62 @@ public class MainActivity extends AppCompatActivity {
     /* Declarando os compononetes - pode nomear com o mesmo nome do id dos componentes */
     private Switch switchSenha;
     private ToggleButton toggleSenha;
-    private TextView textResultadoSenha, textResultadoToggle;
+    private TextView textResultadoSenha, textResultadoToggle, textResultadoSeekBar;
 
     /* Instancias do PreogressBar */
     private ProgressBar progressBarHorizontal;
     private ProgressBar progressBarCircular;
     private int progresso = 0;
 
+    /* Instancias do SeekBar */
+    private SeekBar seekBarEscala;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Capturando os ids dos componentes */
+        /* Capturando os ids do componente Switch e ToggleButton */
         switchSenha = findViewById(R.id.switchSenha);
         toggleSenha = findViewById(R.id.toggleSenha);
         textResultadoSenha = findViewById(R.id.textResultadoSwitch);
         textResultadoToggle = findViewById(R.id.textResultadoToggle);
 
+        /* Capturando os ids do componente ProgressBar */
         progressBarHorizontal = findViewById(R.id.progressBarHorizontal);
         progressBarCircular = findViewById(R.id.progressBarCircular);
 
         // configurando a visibilidade do progressBar circular
         progressBarCircular.setVisibility(View.GONE);
+
+        /* Capturando os ids do componente seekBar */
+        seekBarEscala = findViewById(R.id.seekBarEscala);
+        textResultadoSeekBar = findViewById(R.id.textViewSeekBarResultado);
+
+        //criando um listener
+        seekBarEscala.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                /* Esse método é para cada mudança de progresso da barra */
+                // textResultadoSeekBar.setText("utilizando o método onProgressChanged");
+
+                textResultadoSeekBar.setText("Progresso: " + progress + " - Max: " + seekBar.getMax());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                /* É quando clica no marcador */
+                // textResultadoSeekBar.setText("utilizando o método onStartTrackingTouch");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                /* É quando clica no marcador e depois solta */
+                // textResultadoSeekBar.setText("utilizando o método onStopTrackingTouch");
+            }
+        });
 
 
         /* Adicionando listener para os componentes
@@ -159,6 +193,10 @@ public class MainActivity extends AppCompatActivity {
 
      }
 
+     public void recuperaProgressoSeekBar(View view){
+         textResultadoSeekBar.setText("Progresso: " + seekBarEscala.getProgress());
+     }
+
 }
 
 /** Anotações:
@@ -224,6 +262,18 @@ public class MainActivity extends AppCompatActivity {
  *
  *  Tem o 'progress' que define o progresso da barra.
  *
+ * ------------------------------------------------
+ * SeekBar - para definir escala.
  *
+ * Usando o listener é criado automaticamente três métodos, são eles:
+ * (1) onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){...}
+ * OBS. recebe três tipos de instância no parâmetro. Esse método é para cada mudança de progresso da barra.
  *
+ * (2) onStartTrackingTouch(SeekBar seekBar)
+ * OBS. Esse método é quando clica no marcador.
+ *
+ * (3) onStopTrackingTouch(SeekBar seekBar) {
+ * OBS. É quando clica no marcador e depois solta.
+ *
+ * Para recuperar o valor marcado no SeeKBar é utilizado o próprio 'seekBarEscala' do método 'onProgressChanged'.
  * */
